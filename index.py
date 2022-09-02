@@ -12,9 +12,7 @@ templates = Jinja2Templates(directory="template")
 
 origins = [
     "http://localhost",
-    "http://localhost:5500",
-    "ecse-bot.vercel.app",
-    "ecse-bot-irpl.vercel.app"
+    "http://localhost:5500"
 ]
 
 app.add_middleware(
