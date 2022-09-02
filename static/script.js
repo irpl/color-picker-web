@@ -76,15 +76,18 @@ $("#drag").bind("mousedown touchstart", function (e) {
   e.preventDefault();
   var widthInitial = parseInt($("#horiz").html());
   var heightInitial = parseInt($("#vert").html());
-  var xInitial = e.originalEvent.pageX;
-  var yInitial = e.originalEvent.pageY;
+  var xInitial = e.originalEvent.pageX || e.changedTouches[0].pageX;
+  var yInitial = e.originalEvent.pageY || e.changedTouches[0].pageY;
+
+  // var test1 = e.changedTouches[0].pageX;
+  // var test2 = e.changedTouches[0].pageY;
 
   $(document).bind("mousemove touchmove", function (e) {
     e.preventDefault();
     $(".result").slideUp(300);
     $("#instruct").fadeOut();
-    var movePos = Math.min(Math.max(parseInt(Math.round(((e.originalEvent.pageX - xInitial) / windowWidth) * 3.6) + widthInitial), 0), 360);
-    var movePosVert = Math.min(Math.max(parseInt(Math.round((e.originalEvent.pageY - yInitial) / windowHeight) + heightInitial), 0), 100);
+    var movePos = Math.min(Math.max(parseInt(Math.round((((e.originalEvent.pageX || e.changedTouches[0].pageX) - xInitial) / windowWidth) * 3.6) + widthInitial), 0), 360);
+    var movePosVert = Math.min(Math.max(parseInt(Math.round(((e.originalEvent.pageY || e.changedTouches[0].pageY) - yInitial) / windowHeight) + heightInitial), 0), 100);
 
     $("#drag").css("background", "hsla(" + movePos + ",85%," + movePosVert + "%,1)");
     let rgb = $("#drag").css("background-color");
