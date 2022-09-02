@@ -1,0 +1,206 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 475px;
+  min-width: 350px;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+}
+#drag {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  transition: color 0.5s ease;
+  cursor: crosshair;
+}
+h2 {
+  display: block;
+  font-size: 6em;
+  padding: 0;
+  margin: 0;
+}
+h3 {
+  display: block;
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+}
+span {
+  display: block;
+  vertical-align: middle;
+}
+.copy,
+.copyHEX,
+.copyRGB,
+.copyHSL {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  margin: 0 0 0 -37px;
+  padding: 10px 0;
+  width: 74px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+.copyHEX,
+.copyRGB,
+.copyHSL {
+  opacity: 0;
+}
+.Buttonleft {
+  margin: 0;
+  opacity: 1;
+  -webkit-transform: translate3d(-120px, 0, 0);
+  -moz-transform: translate3d(-120px, 0, 0);
+  transition: all 0.4s ease;
+}
+.Buttoncenter {
+  opacity: 1;
+}
+.Buttonright {
+  margin: 0;
+  opacity: 1;
+  -webkit-transform: translate3d(46px, 0, 0);
+  -moz-transform: translate3d(46px, 0, 0);
+  transition: all 0.4s ease;
+}
+.contain {
+  display: block;
+  position: absolute;
+  width: 240px;
+  height: 74px;
+  top: 50%;
+  left: 50%;
+  margin: -37px 0 0 -120px;
+}
+#instruct {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+#instruct p {
+  font-size: 1.5em;
+}
+.updown {
+  font-size: 5em;
+  -webkit-animation: ud 2s infinite;
+  -moz-animation: ud 2s infinite;
+  position: relative;
+  top: -20px;
+}
+.updown span {
+  transform: rotateX(180deg);
+}
+.center {
+  display: table-cell;
+}
+#drag:after {
+  content: "This app works best in portrait mode.";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10% 0;
+  color: white !important;
+  background: black;
+  display: none;
+}
+.result {
+  text-align: center;
+  display: none;
+}
+.result input {
+  margin: 0 auto;
+  text-align: center;
+  margin: 7px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  background: transparent;
+}
+.ripple {
+  -webkit-animation: rip 0.75s 1;
+  opacity: 0.7;
+  -moz-animation: rip 0.75s 1;
+  opacity: 0.7;
+}
+@-webkit-keyframes rip {
+  0% {
+    box-shadow: 0 0 0 0, 0 0 0 0 transparent;
+  }
+  60% {
+    box-shadow: 0 0 0 20px, 0 0 0 20px;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 40px transparent;
+  }
+}
+@-webkit-keyframes ud {
+  0% {
+    top: -20px;
+    left: 0px;
+  }
+  20% {
+    top: 0px;
+    left: -15px;
+    -webkit-transform: rotate(10deg);
+  }
+  80% {
+    top: 0px;
+    left: 15px;
+  }
+  100% {
+    top: -20px;
+    left: 0px;
+  }
+}
+@-moz-keyframes rip {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7), 0 0 0 0 transparent;
+  }
+  60% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.7), 0 0 0 20px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 40px transparent;
+  }
+}
+@-moz-keyframes ud {
+  0% {
+    top: -20px;
+    left: 0px;
+  }
+  20% {
+    top: 0px;
+    left: -15px;
+    -moz-transform: rotate(10deg);
+  }
+  80% {
+    top: 0px;
+    left: 15px;
+  }
+  100% {
+    top: -20px;
+    left: 0px;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  #drag:after {
+    display: block;
+  }
+}

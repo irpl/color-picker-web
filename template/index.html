@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="result"><input type="text" /></div>
+    <table id="drag">
+      <tr>
+        <td>
+          <div id="instruct">
+            <span class="center"
+              ><h2 class="updown"><span class="fa fa-hand-pointer-o"></span></h2>
+              <p>Touch and drag to start.</p></span
+            >
+          </div>
+          <span
+            >Hue
+            <h2 id="horiz">205</h2></span
+          >
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="contain">
+            <span class="button copyHEX"
+              ><h3>+</h3>
+              HEX</span
+            >
+            <span class="button copyRGB"
+              ><h3>+</h3>
+              RGB</span
+            >
+            <span class="button copyHSL"
+              ><h3>+</h3>
+              HSL</span
+            >
+            <span class="button copy"
+              ><h3>+</h3>
+              Copy</span
+            >
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span
+            >Lightness
+            <h2 id="vert">45%</h2></span
+          >
+        </td>
+      </tr>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', path='script.js') }}"></script>
+  </body>
+</html>
