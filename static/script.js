@@ -254,18 +254,18 @@ var names = [
   "Wright",
   "Wyatt",
 ];
-
+var identifier;
 $(document).ready(function () {
   $(document).on("load", function () {
     if (localStorage.getItem("identifier") == null) {
       var name = names[Math.floor(Math.random() * names.length)];
       var number = Date.now() % 10000;
 
-      var identifier = name + "#" + number;
+      identifier = name + "#" + number;
       localStorage.setItem("identifier", identifier);
     }
-
-    $(".identifier").html(localStorage.getItem("identifier"));
+    identifier = localStorage.getItem("identifier");
+    $(".identifier").html(identifier);
   });
 });
 
