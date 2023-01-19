@@ -256,7 +256,7 @@ var names = [
 ];
 var identifier;
 $(document).ready(function () {
-  $(document).on("load", function () {
+  $(window).on("load", function () {
     if (localStorage.getItem("identifier") == null) {
       var name = names[Math.floor(Math.random() * names.length)];
       var number = Date.now() % 10000;
