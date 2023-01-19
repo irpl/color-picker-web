@@ -255,17 +255,16 @@ var names = [
   "Wyatt",
 ];
 var identifier;
-$(document).ready(function () {
-  $(window).on("load", function () {
-    if (localStorage.getItem("identifier") == null) {
-      var name = names[Math.floor(Math.random() * names.length)];
-      var number = Date.now() % 10000;
 
-      identifier = name + "#" + number;
-      localStorage.setItem("identifier", identifier);
-    }
-    identifier = localStorage.getItem("identifier");
-  });
+$(window).on("load", function () {
+  if (localStorage.getItem("identifier") == null) {
+    var name = names[Math.floor(Math.random() * names.length)];
+    var number = Date.now() % 10000;
+
+    identifier = name + "#" + number;
+    localStorage.setItem("identifier", identifier);
+  }
+  identifier = localStorage.getItem("identifier");
   $(".identifier").html(identifier);
 });
 
