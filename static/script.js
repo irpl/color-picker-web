@@ -1,4 +1,3 @@
-var identifier;
 var names = [
   "Abe",
   "Abraham",
@@ -253,22 +252,20 @@ var names = [
   "Winston",
   "Wren",
   "Wright",
-  "Wyatt"
+  "Wyatt",
 ];
 
-$(document).ready(function() { 
-  $(document).on("load", function() { 
-    identifier = localStorage.getItem("identifier");
+$(document).ready(function () {
+  $(document).on("load", function () {
+    if (localStorage.getItem("identifier") == null) {
+      var name = names[Math.floor(Math.random() * names.length)];
+      var number = Date.now() % 10000;
 
-    if (identifier == null) {
-      var name = names[Math.floor(Math.random()*names.length)];
-      var number = Date.now()%10000;
-    
       var identifier = name + "#" + number;
       localStorage.setItem("identifier", identifier);
-    } else {
-      $(".identifier").html(identifier);
     }
+
+    $(".identifier").html(localStorage.getItem("identifier"));
   });
 });
 
