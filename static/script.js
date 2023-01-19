@@ -1,4 +1,4 @@
-var identifier = localStorage.getItem("indentifier");
+var identifier = localStorage.getItem("identifier");
 
 var names = [
   "Abe",
