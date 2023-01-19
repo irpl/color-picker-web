@@ -257,7 +257,7 @@ var names = [
 ];
 
 $(document).ready(function() { 
-  $(document).load(function() { 
+  $(document).on("load", function() { 
     identifier = localStorage.getItem("identifier");
 
     if (identifier == null) {
