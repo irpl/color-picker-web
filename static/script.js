@@ -265,8 +265,8 @@ $(document).ready(function () {
       localStorage.setItem("identifier", identifier);
     }
     identifier = localStorage.getItem("identifier");
-    $(".identifier").html(identifier);
   });
+  $(".identifier").html(identifier);
 });
 
 $(".copy").bind("mousedown touchstart", function () {
