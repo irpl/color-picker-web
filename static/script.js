@@ -267,7 +267,7 @@ $(document).ready(function() {
       var identifier = name + "#" + number;
       localStorage.setItem("identifier", identifier);
     } else {
-      $(".identifier").html(identifier)
+      $(".identifier").html(identifier);
     }
   });
 });
