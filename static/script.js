@@ -1,5 +1,4 @@
-var identifier = localStorage.getItem("identifier");
-
+var identifier;
 var names = [
   "Abe",
   "Abraham",
@@ -257,6 +256,22 @@ var names = [
   "Wyatt"
 ];
 
+$(document).ready(function() { 
+  $(document).load(function() { 
+    identifier = localStorage.getItem("identifier");
+
+    if (identifier == null) {
+      var name = names[Math.floor(Math.random()*names.length)];
+      var number = Date.now()%10000;
+    
+      var identifier = name + "#" + number;
+      localStorage.setItem("identifier", identifier);
+    } else {
+      $(".identifier").html(identifier)
+    }
+  });
+});
+
 $(".copy").bind("mousedown touchstart", function () {
   $(".copyHEX").addClass("Buttonleft");
   $(".copyRGB").addClass("Buttoncenter");
@@ -395,14 +410,4 @@ $("#drag").bind("mousedown touchstart", function (e) {
 $(document).bind("mouseup touchend", function (e) {
   e.preventDefault();
   $(document).unbind("mousemove touchmove");
-});
-
-$(document).ready(function() { 
-  if (identifier == null) {
-    var name = names[Math.floor(Math.random()*names.length)];
-    var number = Date.now()%10000;
-  
-    var identifier = name + "#" + number;
-    localStorage.setItem("identifier", identifier);
-  }
 });
