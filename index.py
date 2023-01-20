@@ -36,7 +36,7 @@ class Color(BaseModel):
   r: int
   g: int
   b: int
-  p: int | None
+  p: int | None = None
 
 thing = None
 
