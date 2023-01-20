@@ -6,7 +6,8 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
+from pymongo import ReturnDocument
 import motor.motor_asyncio
 
 app = FastAPI()
@@ -20,7 +21,7 @@ origins = [
 ]
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGODB_URL"])
-db = client.color
+db = client.colors
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,12 +36,22 @@ class Color(BaseModel):
   r: int
   g: int
   b: int
+  p: int | None
 
 thing = None
 
+async def getNextSequence():
+  ret = await db["counters"].update_one(
+    {'_id': "position"},
+    {'$inc': {'seq': 1}}
+  )
+  updated_result = await db["counters"].find_one({"_id": "position"})
+  seq = updated_result["seq"]
+  return seq
+
 @app.get("/", response_class=HTMLResponse)
 def read_item(request: Request):
-  print(request)
+  # print(request)
   
   return templates.TemplateResponse("index.html", {"request": request})
 
@@ -52,8 +63,9 @@ async def read_item():
 
 @app.put("/color", response_model=Color)
 async def update_item(color: Color):
-  color = jsonable_encoder(color)
-  print(color)
+  color = color.dict(exclude_unset=True)
+  # color = jsonable_encoder(color)
+  # print(color)
   led = await db["leds"].find_one({"i": color["i"]})
   if led:
     updated_result = await db["leds"].update_one({"i": color["i"]}, {"$set": color})
@@ -61,6 +73,6 @@ async def update_item(color: Color):
       if ( updated_led := await db["leds"].find_one({"i": color["i"]}) ) is not None:
         led = updated_led
   else:
-    new_led = await db["leds"].insert_one(color)
-    led = await db["leds"].find_one({"_id": new_led.inserted_id})
+    new_led = await db["leds"].insert_one({**color, "p": await getNextSequence()})
+    led = await db["leds"].find_one({"i": color["i"]})
   return led

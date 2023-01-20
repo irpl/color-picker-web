@@ -386,7 +386,10 @@ $("#drag").bind("mousedown touchstart", function (e) {
         }
         return res.json(); //we only get here if there is no error
       })
-      .then((json) => console.log(json));
+      .then((json) => {
+        console.log(json);
+        $(".position").html(json.p);
+      });
     $(".result").css("background", "hsla(" + (movePos + 5) + ",85%," + (movePosVert + 15) + "%,1)");
 
     $("#horiz").html(movePos);
