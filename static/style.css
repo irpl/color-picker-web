@@ -11,6 +11,15 @@ body {
   overflow: hidden;
   touch-action: none;
 }
+
+.identifier {
+  position: absolute;
+  z-index: 999;
+  padding: 16px;
+  margin: 10px;
+  background: rgba(0,0,0,0.2);
+}
+
 #drag {
   position: relative;
   width: 100%;
