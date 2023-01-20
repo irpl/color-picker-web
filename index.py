@@ -70,7 +70,8 @@ async def update_item(color: Color):
   if led:
     updated_result = await db["leds"].update_one({"i": color["i"]}, {"$set": color})
     if updated_result.modified_count == 1:
-      if ( updated_led := await db["leds"].find_one({"i": color["i"]}) ) is not None:
+      updated_led = await db["leds"].find_one({"i": color["i"]})
+      if ( updated_led ) is not None:
         led = updated_led
   else:
     new_led = await db["leds"].insert_one({**color, "p": await getNextSequence()})
